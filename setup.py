@@ -17,7 +17,7 @@ setup(
     author_email='jason@localhost8080.org',
     url='https://github.com/jasonverbeek/cli-color-py',
     download_url='https://github.com/jasonverbeek/cli-color-py/archive/refs/tags/0.2.0.tar.gz',
-    packages=['cli_color'],
+    packages=['cli_color_py'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 3.8',
