@@ -1,4 +1,4 @@
-# cli-color-py 0.2.0
+# cli-color-py 0.3.0
 
 Library to output colored text to the terminal.
 
