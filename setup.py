@@ -9,19 +9,20 @@ def read_file(filename):
 
 setup(
     name='cli-color-py',
-    version='0.3.0',
+    version='0.4.0',
     description='Minimalistic way to add colors to your terminal output',
     long_description=read_file('README.md'),
     long_description_content_type='text/markdown',
     author='Jason Verbeek',
     author_email='jason@localhost8080.org',
     url='https://github.com/jasonverbeek/cli-color-py',
-    download_url='https://github.com/jasonverbeek/cli-color-py/archive/refs/tags/0.3.0.tar.gz',
+    download_url='https://github.com/jasonverbeek/cli-color-py/archive/refs/tags/0.4.0.tar.gz',
     packages=['cli_color_py'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
     ]
 )

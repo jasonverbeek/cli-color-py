@@ -1,7 +1,7 @@
 from unittest import TestCase
 
-from cli_color.color import Color
-from cli_color import (
+from cli_color_py.color import Color
+from cli_color_py import (
     black,
     red,
     green,

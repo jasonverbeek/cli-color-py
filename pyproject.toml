@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "cli-color-py"
-version = "0.3.0"
+version = "0.4.0"
 description = "Colored (terminal) output/strings"
 authors = ["Jason Verbeek <jason@localhost8080.org>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.8,<=3.11"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.13.3"
