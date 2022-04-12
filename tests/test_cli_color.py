@@ -1,6 +1,7 @@
 from unittest import TestCase
 
 from cli_color_py.color import Color
+from cli_color_py.color import Attributes
 from cli_color_py import (
     black,
     red,
@@ -10,18 +11,17 @@ from cli_color_py import (
     magenta,
     cyan,
     white,
-
     bright_red,
     bright_green,
     bright_yellow,
     bright_blue,
     bright_magenta,
     bright_cyan,
-
     reset,
     bold,
     underline,
-    blink
+    blink,
+    create_formatter,
 )
 
 
@@ -36,7 +36,6 @@ class TestCliColor(TestCase):
             (35, magenta),
             (36, cyan),
             (37, white),
-
             (91, bright_red),
             (92, bright_green),
             (93, bright_yellow),
@@ -65,3 +64,26 @@ class TestCliColor(TestCase):
         self.assertEqual(36, Color.CYAN)
         self.assertEqual("\x1b[36m", Color.CYAN.default())
         self.assertEqual("\x1b[46m", Color.CYAN.background())
+
+    def test_formatter(self):
+        formatter1 = create_formatter(
+            "{yellow}TEST{reset}: {bright_red_bg}{0}{reset} [{cyan}{1}{reset}]"
+        )
+        self.assertEqual(
+            "\x1b[33mTEST\x1b[0m: \x1b[101mtest\x1b[0m [\x1b[36mnow\x1b[0m]",
+            formatter1("test", "now"),
+        )
+        formatter2 = create_formatter(
+            "{yellow}TEST{reset}: {msg} [{cyan}{datetime}{reset}]"
+        )
+        self.assertEqual(
+            "\x1b[33mTEST\x1b[0m: test [\x1b[36mnow\x1b[0m]",
+            formatter2(msg="test", datetime="now"),
+        )
+
+    def test_as_format(self):
+        c_fmt = Color.as_format()
+        self.assertTrue("cyan" in c_fmt)
+        self.assertTrue("bright_cyan_bg" in c_fmt)
+        self.assertEqual("\x1b[36m", c_fmt["cyan"])
+        self.assertEqual("\x1b[106m", c_fmt["bright_cyan_bg"])

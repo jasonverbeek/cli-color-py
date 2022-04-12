@@ -17,5 +17,7 @@ from .color import (
     reset,
     bold,
     underline,
-    blink
+    blink,
+
+    create_formatter
 )

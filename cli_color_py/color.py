@@ -2,12 +2,23 @@ from enum import Enum
 from typing import Optional
 from functools import partial
 
+
 class Attributes(str, Enum):
     RESET = "\N{ESC}[0m"
     BOLD = "\N{ESC}[1m"
     FAINT = "\N{ESC}[2m"
     UNDERLINE = "\N{ESC}[4m"
     BLINK = "\N{ESC}[5m"
+
+    @classmethod
+    def as_format(cls):
+        keys = [e.name.lower() for e in cls]
+        values = [e.value for e in cls]
+        keyvals = zip(keys, values)
+        return {k: v for k, v in keyvals}
+
+
+
 
 class Color(int, Enum):
     BLACK = 30
@@ -25,6 +36,16 @@ class Color(int, Enum):
     BRIGHT_BLUE = 94
     BRIGHT_MAGENTA = 95
     BRIGHT_CYAN = 96
+
+    @classmethod
+    def as_format(cls):
+        keys = [e.name.lower() for e in cls]
+        values = [e.default() for e in cls]
+        bg_keys = [e.name.lower()+"_bg" for e in cls]
+        bg_values = [e.background() for e in cls]
+        data = {k:v for k, v in  zip(keys, values)}
+        data.update({k:v for k, v in  zip(bg_keys, bg_values)})
+        return data
 
     def default(self) -> str:
         return f"\N{ESC}[{self.value}m"
@@ -71,5 +92,16 @@ reset = partial(_attr, None, None)
 bold = partial(_attr, Attributes.BOLD)
 blink = partial(_attr, Attributes.BLINK)
 underline = partial(_attr, Attributes.UNDERLINE)
+
+
+def create_formatter(fmt: str):
+    def _formatter(*args, **kwargs):
+        return fmt.format(
+            *args,
+            **Color.as_format(),
+            **Attributes.as_format(),
+            **kwargs
+        )
+    return _formatter
 
 
