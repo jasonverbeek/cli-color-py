@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cli-color-py"
-version = "0.5.0"
+version = "0.6.0"
 description = "Colored (terminal) output/strings"
 authors = ["Jason Verbeek <jason@localhost8080.org>"]
 
