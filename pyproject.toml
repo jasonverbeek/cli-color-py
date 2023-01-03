@@ -5,7 +5,7 @@ description = "Colored (terminal) output/strings"
 authors = ["Jason Verbeek <jason@localhost8080.org>"]
 
 [tool.poetry.dependencies]
-python = ">=3.8,<=3.11"
+python = ">=3.8,<3.12"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.13.3"
